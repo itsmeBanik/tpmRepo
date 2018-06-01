@@ -1,0 +1,12 @@
+h1{
+    text-align: center;
+}
+
+input,select{
+    width: 500px;
+   
+}
+
+.btn {
+    margin: 10px;
+}

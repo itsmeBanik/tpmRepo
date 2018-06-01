@@ -2,13 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>TPMUI</title>
+  <title>TPM</title>
   <base href="/">
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB6tAoGMpHeEkiUutzlBTup5GYzVpGLlQY",
+    authDomain: "tpmuser-3e816.firebaseapp.com",
+    databaseURL: "https://tpmuser-3e816.firebaseio.com",
+    projectId: "tpmuser-3e816",
+    storageBucket: "tpmuser-3e816.appspot.com",
+    messagingSenderId: "1073392445951"
+  };
+  firebase.initializeApp(config);
+</script>
+  <script src="https://cdn.auth0.com/js/auth0/8.12.3/auth0.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/primeng@4.0.0-rc.4/resources/themes/omega/theme.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/primeng@4.0.0-rc.4/resources/primeng.min.css" />
 
+    <!-- 1. Load libraries -->
+    <!-- Polyfill for older browsers -->
+    <script src="https://unpkg.com/core-js/client/shim.min.js"></script>
+
+    <script src="https://unpkg.com/zone.js@0.8.4?main=browser"></script>
+    <script src="https://unpkg.com/reflect-metadata@0.1.8"></script>
+    <script src="https://unpkg.com/systemjs@0.19.39/dist/system.src.js"></script>
+    <link rel ="stylesheet" src="../assets/css/common.css">
+
+
+<!------ Include the above in your HEAD tag ---------->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
   <app-root></app-root>
+
+  
 </body>
 </html>

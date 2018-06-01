@@ -1,0 +1,106 @@
+<!-- <div class="section secLogin">
+	<div class="container-fluid p0">
+		<div class="row m0">
+			<div class="col-sm-5 p0">
+				<div class="lBanner">
+					<div class="lBannerImg">
+						<img src="../assets/images/loginBannerImg.png">
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-7 p0">
+				<div class="lContent">
+					<div class="lForm">
+						<div class="lLogos">
+							<img src="../assets/images/cLogo.jpg">
+							<span class="vDivider"></span>
+							<span class="pLogo">TPM</span>
+						</div>
+						<form [formGroup]="loginForm" (ngSubmit)="login()">
+                
+							<div class="form-group">
+                <label for="uEmail">User Name / Email ID</label>
+                <input formControlName="email" type="email" class="form-control" id="uEmail" name="uEmail" aria-describedby="emailHelp" placeholder="Enter User Name / Email ID" required email>
+							</div>
+							<div class="form-group">
+								<label for="uPass">Password</label>
+								<input formControlName="email" type="password" class="form-control error" name="uPass" id="uPass" aria-describedby="passwordHelp" placeholder="Enter Password" required>
+							</div>
+							<div class="form-group d-flex justify-content-end">
+								<div class="form-check">
+									<label class="form-check-label">
+										<input  class="form-check-input" type="checkbox" value="">
+										Remember me
+									</label>
+								</div>
+								<a href="javascript:;" class="ml-auto styleInherit tUnderLine fPLink">Forgot Password?</a>
+							</div>
+							<div class="form-group d-flex justify-content-end">
+              <button type="submit" class="ml-auto btn btnRed" 
+              [disabled]="!f.valid">Login</button>
+							</div>
+						</form>
+						<!--login form ends
+					</div>
+					<div class="footer d-flex justify-content-end">
+						<p>&#169; Copyrights Reserved 2018</p>
+						<p class="ml-auto"><a href="javascript:;">Help</a> <span>|</span> <a href="javascript:;">Privacy Policy</a> <span>|</span> <a href="javascript:;">Terms & Conditions</a></p>
+					</div>
+					<!--footer ends
+				</div>
+			</div>
+		</div>
+	</div>
+  </div> -->
+  <div class="section secLogin">
+      <div class="container-fluid p0">
+        <div class="row m0">
+          <div class="col-sm-5 p0">
+            <div class="lBanner">
+              <div class="lBannerImg">
+                <img src="assets/images/loginBannerImg.png">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7 p0">
+            <div class="lContent">
+              <div class="lForm">
+                <div class="lLogos">
+                  <img src="assets/images/cLogo.jpg">
+                  <span class="vDivider"></span>
+                  <span class="pLogo">TPM</span>
+                </div>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                  <div class="form-group">
+                    <label>User Name / Email ID</label>
+                    <input formControlName="email" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter User Name / Email ID">
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input formControlName="password" type="password" class="form-control error" name="password" id="password" aria-describedby="passwordHelp" placeholder="Enter Password">
+                  </div>
+                  <div class="form-group d-flex justify-content-end">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="">
+                        Remember me
+                      </label>
+                    </div>
+                    <a href="javascript:;" class="ml-auto styleInherit tUnderLine fPLink">Forgot Password?</a>
+                  </div>
+                  <div class="form-group d-flex justify-content-end">
+                  <button type="submit" class="ml-auto btn btnRed">Login</button>
+                  </div>
+                </form>
+                <!--login form ends-->
+              </div>
+              <div class="footer d-flex justify-content-end">
+                <p>© Copyrights Reserved 2018</p>
+                <p class="ml-auto"><a href="javascript:;">Help</a> <span>|</span> <a href="javascript:;">Privacy Policy</a> <span>|</span> <a href="javascript:;">Terms &amp; Conditions</a></p>
+              </div>
+              <!--footer ends-->
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>

@@ -1,0 +1,19 @@
+.lBanner {position: relative; height: 100%;background-color: #e41b23;display: flex; align-items: center;justify-content: center; padding: 20px;}
+.lBannerImg {max-width: 394px;width: 70%;}
+.lBannerImg > img {width: 100%; height: auto; vertical-align: top;}
+
+.lContent {position: relative; height: 100%;display: flex; align-items: center;justify-content: center; padding: 80px;}
+
+.lForm {width: 100%; max-width: 420px;font-family: 'seguisb', Helvetica, sans-serif;}
+.lLogos {position: relative;padding: 0 25px;    margin-bottom: 15%;}
+.lLogos > span.vDivider {display: inline-block; width: 1px; background-color: #d1d3d4;margin: 0 25px; min-height: 61px;    vertical-align: top;}
+.pLogo {color: #414042;font-family: 'segoeuib', Arial, Helvetica, sans-serif;font-size: 2em;}
+
+.lForm .form-group {margin-bottom: 25px;color: #414042}
+.fPLink:hover {color: #000 !important;}
+
+.footer {padding: 10px 10%; }
+
+.secLogin  {position: fixed; top: 0;left:0; width: 100%; height:100%;}
+.container-fluid {padding:0;}
+.container-fluid,.container-fluid > .row {height:100%;}

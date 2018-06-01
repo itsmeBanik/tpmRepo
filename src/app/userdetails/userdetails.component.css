@@ -1,0 +1,28 @@
+h1{
+    text-align: center;
+}
+
+input,select{
+ 
+   
+}
+
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+  
+
+.button {
+    color: cornflowerblue;
+}
+
+.container{
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.cal{
+    width:80%;
+}
+ 

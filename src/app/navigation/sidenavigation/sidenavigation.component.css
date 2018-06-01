@@ -1,0 +1,21 @@
+
+.side_nav {
+    background-color: #470300;
+    width: 60px;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    overflow: hidden;
+    top: 80px;
+}
+
+.side_nav li:hover {
+    background: #5a1d1a;
+    border-left: #e41b23 2px solid;
+}
+
+.side_nav.expanded{width:160px;} 
+.side_nav.expanded:after{width:160px;}
+.side_nav.expanded > .navigation li .menu_name{display:inline-block;    vertical-align: middle;}
+.side_nav.expanded > .navigation li a{text-align:left;}
+.side_nav:after{background-color: #470300;width:53px;height:100%;position:fixed;top:0;bottom:0;left:0;right:0;} 

@@ -1,0 +1,368 @@
+<app-topnavigation></app-topnavigation>
+<app-sidenavigation></app-sidenavigation>
+
+<p-messages [(value)]="msgs"></p-messages>
+
+<div class="container">
+    <h2 style="text-align: center">User Details</h2>
+
+
+    <p-table #dt [value]="users" [paginator]="true" [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100,110,120]"
+        [columns]="cols" [exportFilename]="'User List'">
+        <ng-template pTemplate="header">
+            <tr>
+
+                <th>User ID</th>
+                <th>user Name</th>
+                <th>Email ID</th>
+                <th>Actions</th>
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+
+                <td>{{user.userID}}</td>
+                <td>{{user.userName}}</td>
+                <td>{{user.emailID}}</td>
+                <td class="search-icon">
+
+                    <div class="col-md-8">
+
+                        <div class="row">
+
+                            <div class="col-xs-1">
+
+                                <button pButton type="button" icon="fa fa-eye fa-lg" style="font-size:20px;" (click)="selectUser($event, user)"></button>
+                                <button pButton type="button" icon="fa fa fa-trash-o" style="font-size:20px;" (click)="deleteSelectedUser($event, user)"></button>
+                                <button pButton type="button" icon="far fa-edit" style="font-size:20px;" (click)="onGetDetails($event, user);getRoleDetails()"></button>
+ 
+                            </div>
+                        </div>
+
+                    </div>
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <p-dialog header="User Details" [(visible)]="displayDialogSelect" [responsive]="true" showEffect="fade" [modal]="true" width="500"
+        (onAfterHide)="onDialogHide()">
+        <div class="ui-g" *ngIf="selectedUser">
+
+            <div class="ui-g-4">userID: </div>
+            <div class="ui-g-8">{{selectedUser.userID}}</div>
+            <div class="ui-g-4">Change Password After : </div>
+            <div class="ui-g-8">{{selectedUser.changePasswordAfter}}</div>
+            <div class="ui-g-4">createdBy: </div>
+            <div class="ui-g-8">{{selectedUser.createdBy}}</div>
+            <div class="ui-g-4">createdOn: </div>
+            <div class="ui-g-8">{{selectedUser.createdOn}}</div>
+            <div class="ui-g-4">inValidLoginAttempts: </div>
+            <div class="ui-g-8">{{selectedUser.inValidLoginAttempts}}</div>
+            <div class="ui-g-4">Company Name: </div>
+            <div class="ui-g-8">{{selectedUser.company.companyName}}</div>
+            <div class="ui-g-4">User Group Name: </div>
+            <div class="ui-g-8">{{selectedUser.userGroup.groupName}}</div>
+            <div class="ui-g-4">User Status: </div>
+            <div class="ui-g-8">{{selectedUser.userStatus.status}}</div>
+            <div class="ui-g-4">Username : </div>
+            <div class="ui-g-8">{{selectedUser.userName}}</div>
+            <div class="ui-g-4">Created By: </div>
+            <div class="ui-g-8">{{selectedUser.createdBy}}</div>
+            <div class="ui-g-4">Created On: </div>
+            <div class="ui-g-8">{{selectedUser.createdOn}}</div>
+            <div class="ui-g-4">Updated By: </div>
+            <div class="ui-g-8">{{selectedUser.updatedBy}}</div>
+            <div class="ui-g-4">Updated On: </div>
+            <div class="ui-g-8">{{selectedUser.updatedOn}}</div>
+            <div class="ui-g-4">loginName: </div>
+            <div class="ui-g-8">{{selectedUser.loginName}}</div>
+            <div class="ui-g-4">Role: </div>
+            <div class="ui-g-8">{{selectedUser.role.role}}</div>
+            <div class="ui-g-4">updatedBy: </div>
+            <div class="ui-g-8">{{selectedUser.updatedBy}}</div>
+            <div class="ui-g-4">Email ID: </div>
+            <div class="ui-g-8">{{selectedUser.emailID}}</div>
+            <div class="ui-g-4">User Valid Till: </div>
+            <div class="ui-g-8">{{selectedUser.userValidTill}}</div>
+
+
+
+        </div>
+    </p-dialog>
+    <p-dialog header="Edit User" [(visible)]="displayDialogEdit" [responsive]="true" showEffect="fade" [modal]="true" width="100%"
+        height="600px" (onAfterHide)="onDialogHide()">
+        <div class="ui-g" *ngIf="selectedUser">
+
+            <form class="add-contact-form" #userForm="ngForm">
+
+                <div class="container mt-1">
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label data-error="Required Field">User Name</label>
+                            <input type="text" [ngModel]="selectedUser.userName" class="form-control" name="userName" value="" required userName #userName="ngModel">
+                            <span class="help-block" *ngIf="!userName.valid && userName.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Password</label>
+                            <input class="form-control" type="password" [ngModel]="selectedUser.password" name="password" value="" minlength="8" required
+                                password #password="ngModel">
+                            <span class="help-block" *ngIf="!password.valid && password.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+
+                            <label>change Password After(Days)</label>
+                            <input type="number" class="form-control" [ngModel]="selectedUser.changePasswordAfter" name="changePasswordAfter" value=""
+                                required changePasswordAfter #changePasswordAfter="ngModel">
+                            <span class="help-block" *ngIf="!changePasswordAfter.valid && changePasswordAfter.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>User Group</label>
+                            <input class="form-control" [ngModel]="selectedUser.userGroup" name="userGroup" value="" required userGroup #userGroup="ngModel">
+                            <span class="help-block" *ngIf="!userGroup.valid && userGroup.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Status</label>
+                            <select class="form-control" [ngModel]="selectedUser.userStatus" name="userStatus" value="" required userStatus #userStatus="ngModel">
+                                <option ngValue="Active">Active</option>
+                                <option ngValue="InActive">Inactive</option>
+                            </select>
+                            <span class="help-block" *ngIf="!userstatus.valid && userstatus.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="display:block;" data-error="Required Field">Created On</label>
+                            <p-calendar [(ngModel)]="date3" name="createdOn" [showIcon]="true" required createdOn #createdOn="ngModel"></p-calendar>
+                            
+                            <span class="help-block" *ngIf="!createdOn.valid && createdOn.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label data-error="Required Field">Created By</label>
+                            <input type="text" [ngModel]="selectedUser.createdBy" class="form-control" name="createdBy" value="" required createdBy #createdBy="ngModel">
+                            <span class="help-block" *ngIf="!createdBy.valid && createdBy.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Role</label>
+                           
+                            <select class="form-control" [ngModel]="selectedUser.role" name="role" value="" required role #role="ngModel">
+                                <option ngValue="ROLE_ADMIN">ROLE_ADMIN</option>
+                                <option ngValue="ROLE_USER">ROLE_USER</option>
+                            </select>
+                            <span class="help-block" *ngIf="!role.valid && role.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Login Name</label>
+                            <input type="text" class="form-control" [ngModel]="selectedUser.loginName" name="loginName" value="" required loginName #loginName="ngModel">
+                            <span class="help-block" *ngIf="!loginName.valid && loginName.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+
+                            
+                            <label>Company Name</label>
+                             <select class="form-control" [ngModel]="selectedUser.logincompany" name="logincompany" value="" required logincompany #logincompany="ngModel">
+                            <option value="1">MOTO_MI</option>
+                            <option value="12">MOTO_MSI</option>
+                            
+                            </select>
+                        
+                        </div>
+                        <div class="form-group col-md-3">
+
+                            <label style="display:block;">User Valid Till</label>
+
+                            <p-calendar [(ngModel)]="date4" name="userValidTill" [showIcon]="true" required userValidTill #userValidTill="ngModel"></p-calendar>
+                            
+                            <span class="help-block" *ngIf="!userValidTill.valid && userValidTill.touched">*Required Field</span>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label style="display:block;">User Valid From</label>
+                            <p-calendar [(ngModel)]="date5" name="userValidFrom" [showIcon]="true" required userValidFrom #userValidFrom="ngModel"></p-calendar>
+                            
+                            <span class="help-block" *ngIf="!userValidFrom.valid && userValidFrom.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Email</label>
+                            <input type="text" class="form-control" [ngModel]="selectedUser.emailID" name="emailID" value="" required emailID #emailID="ngModel">
+                            <span class="help-block" *ngIf="!emailID.valid && emailID.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Rows Per Page</label>
+                            <input type="text" class="form-control" [ngModel]="selectedUser.rowsPerPage" name="rowsPerPage" value="" required rowsPerPage
+                                #rowsPerPage="ngModel">
+                            <span class="help-block" *ngIf="!rowsPerPage.valid && rowsPerPage.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Invalid Login Attempts</label>
+                            <input type="number" class="form-control" [ngModel]="selectedUser.inValidLoginAttempts" name="inValidLoginAttempts" value=""
+                                required inValidLoginAttempts #inValidLoginAttempts="ngModel">
+                            <span class="help-block" *ngIf="!inValidLoginAttempts.valid && inValidLoginAttempts.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="display:block;">Updated On</label>
+                            <p-calendar [(ngModel)]="date6" name="updatedOn" required updatedOn #updatedOn="ngModel" [showIcon]="true"></p-calendar>
+                            
+                            <span class="help-block" *ngIf="!updatedOn.valid && updatedOn.touched">*Required Field</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Updated By</label>
+                            <input type="text" class="form-control" [ngModel]="selectedUser.updatedBy" name="updatedBy" value="" required updatedBy #updatedBy="ngModel">
+
+                            <span class="help-block" *ngIf="!updatedBy.valid && updatedBy.touched">*Required Field</span>
+                        </div>
+                        <div class="pb-2 text-center form-group col-md-12">
+
+                            <div *ngFor="let alert of alerts">
+                                <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+                            </div>
+                            <button type="button" class="btn btn-success" (click)="editSelectedUser(userForm);userForm.reset()" [disabled]="!userForm.valid">Resubmit</button>
+                            <button type="submit" class="btn btn-success" (click)="userForm.reset()">Reset Form</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </p-dialog>
+
+    <p-dialog class="container" header="User Form" [(visible)]="formDisplay" [responsive]="true" showEffect="fade" [modal]="true"
+        height="500px" width="100%" (onAfterHide)="onCloseForm()">
+
+        <form class="add-contact-form" #userForm="ngForm">
+
+            <div class="container mt-1">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label data-error="Required Field">User Name</label>
+                        <input type="text" ngModel class="form-control" name="username" value="" required username #username="ngModel">
+                        <span class="help-block" *ngIf="!username.valid && username.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Password</label>
+                        <input class="form-control" type="password" ngModel name="password" value="" minlength="8" required password #password="ngModel">
+                        <span class="help-block" *ngIf="!password.valid && password.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+
+                        <label>change Password After(Days)</label>
+                        <input type="number" class="form-control" ngModel name="changepasswordafter" value="" required changepasswordafter #changepasswordafter="ngModel">
+                        <span class="help-block" *ngIf="!changepasswordafter.valid && changepasswordafter.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>User Group</label>
+                        <input class="form-control" ngModel name="usergroup" value="" required usergroup #usergroup="ngModel">
+                        <span class="help-block" *ngIf="!usergroup.valid && usergroup.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Status</label>
+                        <select class="form-control" ngModel name="userstatus" value="" required userstatus #userstatus="ngModel">
+                            <option *ngFor="let status of status" value={{status.status}}>  
+                                {{status.status}}  
+                            </option>
+                        </select>
+                        <span class="help-block" *ngIf="!userstatus.valid && userstatus.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label style="display:block;" data-error="Required Field">Created On</label>
+                        <p-calendar [(ngModel)]="date3" name="createdon" [showIcon]="true" required createdon #createdon="ngModel"></p-calendar>
+                        
+                        <span class="help-block" *ngIf="!createdon.valid && createdon.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label data-error="Required Field">Created By</label>
+                        <input type="text" ngModel class="form-control" name="createdby" value="" required createdby #createdby="ngModel">
+                        <span class="help-block" *ngIf="!createdby.valid && createdby.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Role</label>
+                        <select class="form-control" ngModel name="role" value="" required role #role="ngModel">
+                            
+                                <option *ngFor="let role of roles" value={{role.role}}>  
+                                    {{role.role}}  
+                                </option>
+                        </select>
+                        <span class="help-block" *ngIf="!role.valid && role.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Login Name</label>
+                        <input type="text" class="form-control" ngModel name="loginname" value="" required loginname #loginname="ngModel">
+                        <span class="help-block" *ngIf="!loginname.valid && loginname.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+
+                        <label>Company Name</label>
+                        <select class="form-control" ngModel name="logincompany" value="" required logincompany #logincompany="ngModel">
+                            <option *ngFor="let company of companyDetails" value={{company.companyName}}>  
+                                {{company.companyName}}  
+                            </option>
+                            
+                        </select>
+                        
+                        <span class="help-block" *ngIf="!logincompany.valid && logincompany.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+
+                        <label style="display:block;">User Valid Till</label>
+
+                        <p-calendar  [(ngModel)]="date4" name="uservalidtill" [showIcon]="true" required uservalidtill #uservalidtill="ngModel"></p-calendar>
+                        
+                        <span class="help-block" *ngIf="!uservalidtill.valid && uservalidtill.touched">*Required Field</span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label style="display:block;">User Valid From</label>
+                        <p-calendar [(ngModel)]="date5" name="uservalidfrom" [showIcon]="true" required uservalidfrom #uservalidfrom="ngModel"></p-calendar>
+                        
+                        <span class="help-block" *ngIf="!uservalidfrom.valid && uservalidfrom.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Email</label>
+                        <input type="text" class="form-control" ngModel name="email" value="" required email #email="ngModel">
+                        <span class="help-block" *ngIf="!email.valid && email.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Rows Per Page</label>
+                        <input type="text" class="form-control" ngModel name="rowsperpage" value="" required rowsperpage #rowsperpage="ngModel">
+                        <span class="help-block" *ngIf="!rowsperpage.valid && rowsperpage.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Invalid Login Attempts</label>
+                        <input type="number" class="form-control" ngModel name="inValidloginAttempts" value="" required inValidloginAttempts #inValidloginAttempts="ngModel">
+                        <span class="help-block" *ngIf="!inValidloginAttempts.valid && inValidloginAttempts.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label style="display:block;">Updated On</label>
+                        <p-calendar [(ngModel)]="date6" name="updatedon" required updatedon #updatedon="ngModel" [showIcon]="true"></p-calendar>
+                        
+                        <span class="help-block" *ngIf="!updatedon.valid && updatedon.touched">*Required Field</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Updated By</label>
+                        <input type="text" class="form-control" ngModel name="updatedby" value="" required updatedby #updatedby="ngModel">
+
+                        <span class="help-block" *ngIf="!updatedby.valid && updatedby.touched">*Required Field</span>
+                    </div>
+
+                    <div class="pb-2 text-center form-group col-md-12">
+
+                        <div *ngFor="let alert of alerts">
+                            <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+                        </div>
+                        <button type="button" class="btn btn-success" (click)="addUserDetail(userForm);userForm.reset()" [disabled]="!userForm.valid">Submit Details</button>
+                        <button type="submit" class="btn btn-success" (click)="userForm.reset()">Reset Form</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </p-dialog>
+    <br>
+    <br>
+    <div class="text-center">
+
+        <button type="submit" class="btn btn-success" (click)="userForm.reset();addUserDetailShowForm()">Create User</button>
+        <!-- <button type="button" class="btn btn-danger" (click)="add()">Delete</button> -->
+        <button type="button" class="btn btn-info" (click)="dt.exportCSV()">Export</button>
+
+    </div>
+</div>

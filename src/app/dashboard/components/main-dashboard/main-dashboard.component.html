@@ -1,0 +1,140 @@
+<section id="team" class="ml-5 pb-5 mt-5">
+  <div class="container">
+    <h5 class="section-title h1 text-center">Welcome to Trading Partner Management</h5>
+
+    <div class="row">
+      <!-- Team member -->
+
+      <div class="col-xs-12 col-sm-5">
+        <div class ="container">
+          <div class="card">
+              <div class="card-header chDD">
+                <span>Transactions</span>
+                <div class="chDropdown">
+                  <div class="cDropDown">
+                    <a href="javascript:;" class="triggerDD">Daily</a>
+                    <ul>
+                      <li><a href="javascript:;">Weekly</a></li>
+                      <li><a href="javascript:;">Monthly</a></li>
+                    </ul>
+                  </div>
+                  <!--<select class="form-control transactionType select2">
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                  </select>-->
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-7">
+                    <div class="transactionChart">
+                      <div class="cLine cline1">
+                        <canvas id="cLine1" width="110" height="110">
+                      </canvas></div>
+                      <div class="cLine cline2">
+                        <canvas id="cLine2" width="130" height="130">
+                      </canvas></div>
+                      <div class="cLine cline3">
+                        <canvas id="cLine3" width="150" height="150">
+                      </canvas></div>
+                      <p class="tgText"><span>156</span> Transactions</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-5 d-flex align-items-center text-center">
+                    <p>Total Inbound and Outbound Transactions</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            
+            <div class="row mh5minus mt10">
+                <div class="col-sm-4 ph5">
+                  <div class="box bgTheme">
+                    <h5 class="boxTitle">Error<span class="errorIndicator"></span></h5>
+                    <p>04</p>
+                  </div>
+                </div>
+                <div class="col-sm-4 ph5">
+                  <div class="box bgTheme">
+                    <h5 class="boxTitle">Success<span class="successIndicator"></span></h5>
+                    <p>100</p>
+                  </div>
+                </div>
+                <div class="col-sm-4 ph5">
+                  <div class="box bgTheme">
+                    <h5 class="boxTitle">In-Process<span class="warnIndicator"></span></h5>
+                    <p>52</p>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+          <div class="mainflip">
+            <div class="frontside">
+              <div class="card">
+                <div class="card-body text-center">
+                  <p>
+                    <img class=" img-fluid" src="http://icons.iconarchive.com/icons/aha-soft/people/256/user-group-icon.png" alt="card image">
+                  </p>
+                  <h4 class="card-title">User List</h4>
+                  <p class="card-text">This link contains a list of all the users along with their details .</p>
+
+                </div>
+              </div>
+            </div>
+            <div class="backside">
+              <div class="card">
+                <div class="card-body text-center mt-4">
+                  <br>
+                  <br>
+                  <p class="card-text">This link contains a list of all the users along with their details .</p>
+
+                  <button class="btn btn-info" (click)="displayUserList()">User List</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-3">
+        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+          <div class="mainflip">
+            <div class="frontside">
+              <div class="card">
+                <div class="card-body text-center">
+                  <p>
+                    <img class=" img-fluid" src="http://techideahub.com/wp-content/uploads/2016/06/explainer-video-company-678x381.jpg" alt="card image">
+                  </p>
+                  <h4 class="card-title">Company List</h4>
+                  <p class="card-text">This link contains a list of all the companies along with their details .</p>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="backside">
+              <div class="card">
+                <div class="card-body text-center mt-4">
+                  <br>
+                  <br>
+
+                  <p class="card-text">This link contains a detailed list of all the companies an user can be a part of or of that are there in
+                    my database .</p>
+                  <button class="btn btn-info" (click)="displayCompanyList()">Company List</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+    
+  </div>
+</section>
